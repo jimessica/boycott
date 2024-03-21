@@ -1,4 +1,4 @@
-# The Impact of Boycotting on Stock Prices in North America Since 1980
+# The Impact of Boycotting on Stock Prices of North American Corporations Since 1980
 
 ## Overview
 
