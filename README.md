@@ -1,4 +1,4 @@
-# History of Boycotting Impact on Stock Price
+# The Impact of Boycotting on Stock Prices in North America
 
 
 ## Overview
