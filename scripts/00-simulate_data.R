@@ -14,7 +14,7 @@ library(dplyr)
 #### Simulate data ####
 set.seed(250)
 
-# simulate data of company 1 from 1 year before to 1 year after boycott
+# simulate data of Company Coka-Cola from 1 year before to 1 year after boycott
 KO_simulated_data <-
   tibble(
     date =
@@ -35,3 +35,12 @@ KO_simulated_data <-
       )
 
 KO_simulated_data
+
+
+#### Graph simulated data ####
+KO_simulated_data |>
+  ggplot(mapping = aes(x = date, y = high)) +
+  geom_line(color="grey") +
+  geom_point(shape=21, color="black", fill="#69b3a2", size=2) +
+  theme_light() +
+  labs(x = "Year and Month", y = "High", caption = "Change in stock price of Coca-Cola by month from June 2002 to May 2006.")
