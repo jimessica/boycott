@@ -9,10 +9,15 @@
 
 #### Workspace setup ####
 library(tidyverse)
-library(ggplot2)
+library(dplyr)
 
 #### Simulate data ####
+set.seed(250)
 
+KO_simulated_data <-
+  tibble(
+    year = 
+  )
 
 
 
