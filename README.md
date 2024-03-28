@@ -2,10 +2,11 @@
 
 ## Overview
 
-This repo provides students with a foundation for their own projects associated with *Telling Stories with Data*. You do not need every aspect for every paper and you should delete aspects that you do not need.
+This repo provides analysis of the impact of boycotting since 1980 on stock prices of North American Corporations. The analysis reveals the importance of boycotting and which boycott motivations have the most impact. There is a focus on stock price fluctuations between a year before boycotting began and a year after it ended. 
 
-To use this folder, click the green "Code" button", then "Download ZIP". Move the downloaded folder to where you want to work on your own computer, and then modify it to suit.
+## Obtaining Raw Data
 
+Raw data can be downloaded from Yahoo finance's historical data.
 
 ## File Structure
 
