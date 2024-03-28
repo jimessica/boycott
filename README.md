@@ -6,7 +6,7 @@ This repo provides analysis of the impact of boycotting since 1980 on stock pric
 
 ## Obtaining Raw Data
 
-Raw data can be downloaded from Yahoo finance's historical data. When downloading, filter by:
+Raw data can be downloaded from Yahoo finance's historical data. Before downloading, filter by:
 
 -   Time Period:
 
@@ -33,4 +33,4 @@ The repo is structured as:
 
 ## Statement on LLM usage
 
-Aspects of the code were written with the help of the auto-complete tool, Codriver. The abstract and introduction were written with the help of ChatHorse and the entire chat history is available in inputs/llms/usage.txt.
+LLMs were not used in the research, replication, or writing of this paper.
