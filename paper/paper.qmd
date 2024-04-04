@@ -80,14 +80,14 @@ knitr::kable(rawdataNKE,
 
 cleaned_data_NKE |>
   ggplot(mapping = aes(x = Date, y = Close)) +
-  geom_line(color="pink") +
+  geom_line(color="blue") +
   labs(x = "July 11th, 1991 to May 19th, 1998", y = "Stock Price at Closing",) +
   scale_x_date(
     breaks = "12 months",
     labels = scales::label_date_short(
       format = c("%y", "%b"),
-      sep = "\n"))
-  ylim(1,2) + 
+      sep = "\n")) +
+  ylim(0,10) + 
   theme_minimal()
 
 ```

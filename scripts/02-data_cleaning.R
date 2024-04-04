@@ -21,15 +21,13 @@ raw_data_PRKS <- read_csv("data/raw_data/raw_data_PRKS.csv")
 cleaned_data_NKE <-
   raw_data_NKE |>
   select(Date, Close) |> 
-  mutate(date_onset = as.numeric(date_onset)) |>
-  mutate(date_onset = as.Date(date_onset, origin = "1991-07-11"))
+  mutate(Date = lubridate::ymd(Date))
 
 # United Parks and Resorts
 cleaned_data_PRKS <-
   raw_data_PRKS |>
   select(Date, Close) |>
-  mutate(date_onset = as.numeric(date_onset)) |>
-  mutate(date_onset = as.Date(date_onset, origin = "2013-07-12"))
+  mutate(Date = lubridate::ymd(Date))
 
 #### Save data ####
 # Nike
