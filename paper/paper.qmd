@@ -6,7 +6,7 @@ author:
 thanks: "Code and data are available at: https://github.com/jimessica/boycott"
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "Introduction to the topic and its importance. What I did in my research and analysis. What was found from my research and analysis. Significance of my findings."
 format: pdf
 number-sections: true
 bibliography: references.bib
