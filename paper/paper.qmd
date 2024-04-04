@@ -19,6 +19,7 @@ bibliography: references.bib
 
 library(tidyverse)
 library(tinytex)
+library(kableExtra)
 library(knitr)
 library(janitor)
 library(kableExtra)
@@ -28,26 +29,49 @@ cleaned_data_NKE <- read.csv("../data/analysis_data/cleaned_data_NKE.csv")
 
 ```
 
-
 # Introduction
 
 You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
 
-The remainder of this paper is structured as follows. @sec-data....
+In [Background], the history of why each company was or is being boycotted is explained. In the following section, [Data], 
 
+# Background
 
+## Nike (NKE)
+
+In August of 1992, Jeffrey Ballinger published “The new free-trade heel: Nike's profits jump on the backs of Asian workers” in a Harper’s Magazine issue [@harpers]. This publication revealed the low pay and poor working conditions in Nike’s Indonesian sweatshops. Later that year, Nike released the “Code of Conduct and Memorandum of Understanding” for contract workers, but the labour controversy was well underway. In the following years, protests in Southeast Asia and the United States raged on. Protests at the Barcelona Olympics in 1992 and the founding of Ballinger’s labour group Press for Change in 1993 brought new waves of media attention to the cause.
+
+## United Parks and Recreation
+
+## Chevron
+
+## Starbucks
 
 # Data {#sec-data}
 
+In @tbl-rawdataNKE, the data's date and stock price are shown.
 
 ```{r}
-#| label: fig-rawdataNKE
-#| fig-cap: Description of Raw Nike Stock Columns and How They Were Cleaned
+#| label: tbl-rawdataNKE
+#| tbl-cap: "Description of Raw Nike Stock Variables"
 #| echo: false
 
+rawdataNKE <- data.frame( 
+  "Variables" = c( "Date", "Close"),
+  "New Name" = c( "Date", "Stock Price"), 
+  "Description of Variables" = c("The day of the stock price", "The value of the stock at market close"), 
+  "Example Value" = c("1991-07-12", "1.355469")
+)
 
+knitr::kable(rawdataNKE, 
+      col.names = c("Variables", 
+                    "New Name",
+                    "Description of Variables" ,
+                    "Example Value"),
+      booktabs = TRUE,
+      linesep = " "
+      )
 ```
-
 
 ```{r}
 #| label: fig-linegraphNKE
@@ -56,9 +80,15 @@ The remainder of this paper is structured as follows. @sec-data....
 
 cleaned_data_NKE |>
   ggplot(mapping = aes(x = Date, y = Close)) +
-  geom_line(color="grey") +
-  theme_light() +
-  labs(x = "July 11th, 1991 to May 19th, 1998", y = "Stock Price at Closing")
+  geom_line(color="pink") +
+  labs(x = "July 11th, 1991 to May 19th, 1998", y = "Stock Price at Closing",) +
+  scale_x_date(
+    breaks = "12 months",
+    labels = scales::label_date_short(
+      format = c("%y", "%b"),
+      sep = "\n"))
+  ylim(1,2) + 
+  theme_minimal()
 
 ```
 
@@ -76,16 +106,13 @@ And also planes (@fig-planes). (You can change the height and width, but don't w
 
 ```
 
-Talk way more about it. 
-
-
-
+Talk way more about it.
 
 # Discussion
 
 ## First discussion point {#sec-first-point}
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
+If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this.
 
 ## Second discussion point
 
@@ -99,16 +126,13 @@ Weaknesses and next steps should also be included.
 
 \appendix
 
-# Appendix {-}
-
+# Appendix {.unnumbered}
 
 # Additional data details
 
 # Model details {#sec-model-details}
 
 ## Posterior predictive check
-
-
 
 ```{r}
 #| eval: true
@@ -125,7 +149,6 @@ Weaknesses and next steps should also be included.
 
 ## Diagnostics
 
-
 ```{r}
 #| echo: false
 #| eval: true
@@ -139,11 +162,6 @@ Weaknesses and next steps should also be included.
 
 ```
 
-
-
 \newpage
 
-
 # References
-
-
