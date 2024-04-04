@@ -1,4 +1,4 @@
-# The Impact of Boycotting on Stock Prices of North American Corporations Since 1980
+# The Impact of Boycotting on Stock Prices of Nike, Chevron, and United Parks and Recreation from 1991 to 2024
 
 ## Overview
 
