@@ -11,6 +11,7 @@ Raw data can be downloaded from Yahoo finance's historical data. Before download
 -   Time Period:
 
     -   Coca-Cola Company (KO): 2002-06-01 to 2024-03-01
+    -   Nike (NKE):
 
 -   Show:
 
