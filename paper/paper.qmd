@@ -39,7 +39,7 @@ The remainder of this paper is structured as follows. @sec-data....
 
 # Data {#sec-data}
 
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+
 ```{r}
 #| label: fig-rawdataNKE
 #| fig-cap: Description of Raw Nike Stock Columns and How They Were Cleaned
