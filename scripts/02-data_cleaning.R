@@ -1,44 +1,33 @@
 #### Preamble ####
-# Purpose: Cleans the raw plane data recorded by two observers..... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 6 April 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Cleans the stock data downloaded from Yahoo Finance Canada
+# Author: Jessica Im
+# Date: 4 April 2024
+# Contact: jessica.im@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: Download data by referencing READ ME
+# Any other information needed?
 
 #### Workspace setup ####
 library(tidyverse)
 
 #### Clean data ####
-raw_data <- read_csv("inputs/data/plane_data.csv")
+raw_data_NKE <- read_csv("data/raw_data/raw_data_NKE.csv")
+raw_data_PRKS <- read_csv("data/raw_data/raw_data_PRKS.csv")
 
-cleaned_data <-
-  raw_data |>
-  janitor::clean_names() |>
-  select(wing_width_mm, wing_length_mm, flying_time_sec_first_timer) |>
-  filter(wing_width_mm != "caw") |>
-  mutate(
-    flying_time_sec_first_timer = if_else(flying_time_sec_first_timer == "1,35",
-                                   "1.35",
-                                   flying_time_sec_first_timer)
-  ) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "490",
-                                 "49",
-                                 wing_width_mm)) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "6",
-                                 "60",
-                                 wing_width_mm)) |>
-  mutate(
-    wing_width_mm = as.numeric(wing_width_mm),
-    wing_length_mm = as.numeric(wing_length_mm),
-    flying_time_sec_first_timer = as.numeric(flying_time_sec_first_timer)
-  ) |>
-  rename(flying_time = flying_time_sec_first_timer,
-         width = wing_width_mm,
-         length = wing_length_mm
-         ) |> 
-  tidyr::drop_na()
+## Selecting only the date and stock price at close
+# Nike
+cleaned_data_NKE <-
+  raw_data_NKE |>
+  select(Date, Close)
+
+# United Parks and Resorts
+cleaned_data_PRKS <-
+  raw_data_PRKS |>
+  select(Date, Close)
 
 #### Save data ####
-write_csv(cleaned_data, "outputs/data/analysis_data.csv")
+# Nike
+write_csv(cleaned_data_NKE, "data/analysis_data/cleaned_data_NKE.csv")
+
+# United Parks and Resorts
+write_csv(cleaned_data_PRKS, "data/analysis_data/cleaned_data_PRKS.csv")
