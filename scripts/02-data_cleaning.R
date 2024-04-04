@@ -22,12 +22,16 @@ cleaned_data_NKE <-
   raw_data_NKE |>
   select(Date, Close) |> 
   mutate(Date = lubridate::ymd(Date))
+cleaned_data_NKE$Date <- 
+  as.Date(cleaned_data_NKE$Date, format='%Y-%m-%d')
 
 # United Parks and Resorts
 cleaned_data_PRKS <-
   raw_data_PRKS |>
   select(Date, Close) |>
   mutate(Date = lubridate::ymd(Date))
+cleaned_data_PRKS$Date <- 
+  as.Date(cleaned_data_PRKS$Date, format='%Y-%m-%d')
 
 #### Save data ####
 # Nike

@@ -24,9 +24,11 @@ library(knitr)
 library(janitor)
 library(kableExtra)
 library(ggplot2)
+library(xts)
+
 
 cleaned_data_NKE <- read.csv("../data/analysis_data/cleaned_data_NKE.csv")
-
+cleaned_data_PRKS <- read.csv("../data/analysis_data/cleaned_data_PRKS.csv")
 ```
 
 # Introduction
@@ -73,6 +75,7 @@ knitr::kable(rawdataNKE,
       )
 ```
 
+@fig-linegraphNKE shows the change in stock price during boycotting of Nike.
 ```{r}
 #| label: fig-linegraphNKE
 #| fig-cap: Changes in Nike Stock Price from One Week Before the Commencement of Labour Boycotts to One Week After Their Pledge to End Poor Working Conditions and Child Labour
@@ -80,7 +83,7 @@ knitr::kable(rawdataNKE,
 
 cleaned_data_NKE |>
   ggplot(mapping = aes(x = Date, y = Close)) +
-  geom_line(color="blue") +
+  geom_line(color="#0000c2") +
   labs(x = "July 11th, 1991 to May 19th, 1998", y = "Stock Price at Closing",) +
   scale_x_date(
     breaks = "12 months",
@@ -88,6 +91,26 @@ cleaned_data_NKE |>
       format = c("%y", "%b"),
       sep = "\n")) +
   ylim(0,10) + 
+  theme_minimal()
+
+```
+
+@fig-linegraphPRKS shows the change in stock price during boycotting of United Parks and Recreation.
+```{r}
+#| label: fig-linegraphPRKS
+#| fig-cap: Changes in United Parks and Recreation Stock Price from One Week Before the Commencement of Blackfish was Released to One Week After Their Pledge to End Orca Breeding
+#| echo: false
+
+cleaned_data_PRKS |>
+  ggplot(mapping = aes(x = Date, y = Close)) +
+  geom_line(color="#0000c2") +
+  labs(x = "July 12th, 2013 to May 17th, 2016", y = "Stock Price at Closing",) +
+  scale_x_date(
+    breaks = "12 months",
+    labels = scales::label_date_short(
+      format = c("%y", "%b"),
+      sep = "\n")) +
+  ylim(15,40) + 
   theme_minimal()
 
 ```
