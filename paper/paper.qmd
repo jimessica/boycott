@@ -41,9 +41,11 @@ In [Background], the history of why each company was or is being boycotted is ex
 
 ## Nike (NKE)
 
-In August of 1992, Jeffrey Ballinger published “The new free-trade heel: Nike's profits jump on the backs of Asian workers” in a Harper’s Magazine issue [@harpers]. This publication revealed the low pay and poor working conditions in Nike’s Indonesian sweatshops. Later that year, Nike released the “Code of Conduct and Memorandum of Understanding” for contract workers, but the labour controversy was well underway. In the following years, protests in Southeast Asia and the United States raged on. Protests at the Barcelona Olympics in 1992 and the founding of Ballinger’s labour group Press for Change in 1993 brought new waves of media attention to the cause.
+In August of 1992, Jeffrey Ballinger published “The new free-trade heel: Nike's profits jump on the backs of Asian workers” in a Harper’s Bazaar issue [@harpers]. This publication revealed the low pay and poor working conditions in Nike’s Southeast Asian and Middle Eastern sweatshops [@ethically]. Later that year, Nike released the “Code of Conduct and Memorandum of Understanding” for contract workers, but the labour controversy was well underway. In the following years, protests in Southeast Asia and the United States raged on. Protests at the Barcelona Olympics in 1992 and the founding of Ballinger’s labour group Press for Change in 1993 brought new waves of media attention to the cause. After years of Nike promotions fueling more public outrage, in 1998, Nike’s then-CEO Phil Knight announced that Nike will raise minimum wage, increase monitoring, and introduce U.S. clean air standards at all factories [@ethically]. Knight acknowledged the brand’s association with workplace abuse and stated that "the American consumer doesn’t want to buy products made under abusive conditions”. This speech marked the shift away from boycotting and for the purposes of this paper will represent the end of Nike boycotting. 
+
 
 ## United Parks and Recreation
+
 
 ## Chevron
 
@@ -120,12 +122,9 @@ Talk more about it.
 And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
 
 ```{r}
-#| label: fig-planes
-#| fig-cap: Relationship between wing length and width
+#| label: fig-linegraphNIKE
+#| fig-cap: Changes in United Parks and Recreation Stock Price from One Week Before the Commencement of Blackfish was Released to One Week After Their Pledge to End Orca Breeding
 #| echo: false
-#| warning: false
-#| message: false
-
 
 ```
 
