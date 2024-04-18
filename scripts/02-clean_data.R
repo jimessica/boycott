@@ -25,6 +25,8 @@ cleaned_data_NKE <-
 cleaned_data_NKE$Date <- 
   as.Date(cleaned_data_NKE$Date, format='%Y-%m-%d')
 
+class(cleaned_data_NKE$Date)
+
 # United Parks and Resorts
 cleaned_data_PRKS <-
   raw_data_PRKS |>

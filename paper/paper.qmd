@@ -45,6 +45,8 @@ In August of 1992, Jeffrey Ballinger published “The new free-trade heel: Nike'
 
 
 ## United Parks and Recreation
+Blackfish is a film focused on the cruel captivity of orcas by focusing on the infamous killer whale, Tilikum, who was kept in captivity at SeaWorld and was involved in the death of 3 people [@WAP]. The film was released in 2013 and shown on major channels like CNN, Netflix, and Universal Studios around the world and over its 14-week box office period in North America, earned $2,073,582 [@wikiBlackfish]. In March of 2014, California Assemblyman Richard Bloom proposed that orcas are banned from being held captive for entertainment [@CNNorcaban]. Later that year, U.S. Congressmen Adam Schiff and Jared Huffman amended the Agriculture Appropriations Act to require the USDA’s Animal & Plant Health Inspection Service to update and finalize regulations on marine mammal captivity [@SchiffandHuffman]. On behalf of SeaWorld investors, the Rosen Law Firm filed a class action lawsuit against SeaWorld in 2014 for 
+
 
 
 ## Chevron
@@ -117,9 +119,7 @@ cleaned_data_PRKS |>
 
 ```
 
-Talk more about it.
 
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
 
 ```{r}
 #| label: fig-linegraphNIKE
