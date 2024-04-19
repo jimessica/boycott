@@ -28,6 +28,12 @@ library(xts)
 
 
 cleaned_data_NKE <- read.csv("../data/analysis_data/cleaned_data_NKE.csv")
+cleaned_data_NKE <- 
+  cleaned_data_NKE |>
+  mutate(Date = lubridate::ymd(Date))
+cleaned_data_NKE$Date <- 
+  as.Date(cleaned_data_NKE$Date, format='%Y-%m-%d')
+
 cleaned_data_PRKS <- read.csv("../data/analysis_data/cleaned_data_PRKS.csv")
 ```
 
