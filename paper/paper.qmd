@@ -170,6 +170,8 @@ cleaned_data_SBUX |>
   theme_minimal()
 ```
 
+\newpage
+
 # Results
 
 ## Overall Change in Stock Price
@@ -177,7 +179,7 @@ cleaned_data_SBUX |>
 @tbl-starttoendNKE shows a 
 ```{r}
 #| label: tbl-starttoendNKE
-#| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United to March 28th
+#| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
 #| echo: false
 
 
@@ -188,12 +190,18 @@ starttoend_NKE <-
   starttoend_NKE |> 
   mutate(Difference = Close - lag(Close)) 
 
-
+kable(starttoend_NKE, 
+      col.names = c("Date", 
+                    "Closing Stock Price",
+                    "Difference Between Stock Prices"),
+      booktabs = TRUE,
+      linesep = ""
+)
 ```
 @tbl-starttoendPRKS shows that there was a significant decrease in 
 ```{r}
 #| label: tbl-starttoendPRKS
-#| tbl-cap: Changes in United Parks & Recreation Stock Price from One Week Before Blackfish was Released to their Announcement that they will end their Orca Breeding Program
+#| tbl-cap: Changes in United Parks & Recreation Stock Price from One Week Before Blackfish was Released, to the Date it was Released, to their Announcement that they will end their Orca Breeding Program
 #| echo: false
 
 
@@ -204,12 +212,43 @@ starttoendPRKS <-
   starttoendPRKS |> 
   mutate(Difference = Close - lag(Close)) 
 
-
+kable(starttoendPRKS, 
+      col.names = c("Date", 
+                    "Closing Stock Price",
+                    "Difference Between Stock Prices"),
+      booktabs = TRUE,
+      linesep = ""
+)
 ```
 
-/newpage
+
+@tbl-starttoendSBUX shows a 
+```{r}
+#| label: tbl-starttoendSBUX
+#| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
+#| echo: false
+
+
+starttoendSBUX <- cleaned_data_SBUX |>
+  filter(Date == '1991-07-12' | Date == '1991-07-18' | Date == '1998-05-19')
+
+starttoendSBUX <-
+  starttoendSBUX |> 
+  mutate(Difference = Close - lag(Close)) 
+
+kable(starttoendSBUX, 
+      col.names = c("Date", 
+                    "Closing Stock Price",
+                    "Difference Between Stock Prices"),
+      booktabs = TRUE,
+      linesep = ""
+)
+```
+
+\newpage
 
 # Discussion
+
 
 ## Out of Sight, Out of Mind: Nike isn't the Only One
 
