@@ -35,6 +35,18 @@ cleaned_data_NKE$Date <-
   as.Date(cleaned_data_NKE$Date, format='%Y-%m-%d')
 
 cleaned_data_PRKS <- read.csv("../data/analysis_data/cleaned_data_PRKS.csv")
+cleaned_data_PRKS <- 
+  cleaned_data_PRKS |>
+  mutate(Date = lubridate::ymd(Date))
+cleaned_data_PRKS$Date <- 
+  as.Date(cleaned_data_PRKS$Date, format='%Y-%m-%d')
+
+cleaned_data_SBUX <- read.csv("../data/analysis_data/cleaned_data_SBUX.csv")
+cleaned_data_SBUX <- 
+  cleaned_data_SBUX |>
+  mutate(Date = lubridate::ymd(Date))
+cleaned_data_SBUX$Date <- 
+  as.Date(cleaned_data_SBUX$Date, format='%Y-%m-%d')
 ```
 
 # Introduction
@@ -47,22 +59,28 @@ In [Background], the history of why each company was or is being boycotted is ex
 
 ## Nike (NKE)
 
-In August of 1992, Jeffrey Ballinger published “The new free-trade heel: Nike's profits jump on the backs of Asian workers” in a Harper’s Bazaar issue [@harpers]. This publication revealed the low pay and poor working conditions in Nike’s Southeast Asian and Middle Eastern sweatshops [@ethically]. Later that year, Nike released the “Code of Conduct and Memorandum of Understanding” for contract workers, but the labour controversy was well underway. In the following years, protests in Southeast Asia and the United States raged on. Protests at the Barcelona Olympics in 1992 and the founding of Ballinger’s labour group Press for Change in 1993 brought new waves of media attention to the cause. After years of Nike promotions fueling more public outrage, in 1998, Nike’s then-CEO Phil Knight announced that Nike will raise minimum wage, increase monitoring, and introduce U.S. clean air standards at all factories [@ethically]. Knight acknowledged the brand’s association with workplace abuse and stated that "the American consumer doesn’t want to buy products made under abusive conditions”. This speech marked the shift away from boycotting and for the purposes of this paper will represent the end of Nike boycotting. 
+In August of 1992, Jeffrey Ballinger published “The new free-trade heel: Nike's profits jump on the backs of Asian workers” in a Harper’s Bazaar issue [@harpers]. This publication revealed the low pay and poor working conditions in Nike’s Southeast Asian and Middle Eastern sweatshops [@ethically]. Later that year, Nike released the “Code of Conduct and Memorandum of Understanding” for contract workers, but the labour controversy was well underway. In the following years, protests in Southeast Asia and the United States raged on. Protests at the Barcelona Olympics in 1992 and the founding of Ballinger’s labour group Press for Change in 1993 brought new waves of media attention to the cause. After years of Nike promotions fueling more public outrage, in 1998, Nike’s then-CEO Phil Knight announced that Nike will raise minimum wage, increase monitoring, and introduce U.S. clean air standards at all factories [@ethically]. Knight acknowledged the brand’s association with workplace abuse and stated that "the American consumer doesn’t want to buy products made under abusive conditions”. This speech marked the shift away from boycotting and for the purposes of this paper will represent the end of Nike boycotting.
 
 
 ## United Parks and Recreation
 Blackfish is a film focused on the cruel captivity of orcas by focusing on the infamous killer whale, Tilikum, who was kept in captivity at SeaWorld and was involved in the death of 3 people [@WAP]. The film was released in 2013 and shown on major channels like CNN, Netflix, and Universal Studios around the world and over its 14-week box office period in North America, earned $2,073,582 [@wikiBlackfish]. In March of 2014, California Assemblyman Richard Bloom proposed that orcas are banned from being held captive for entertainment [@CNNorcaban]. Later that year, U.S. Congressmen Adam Schiff and Jared Huffman amended the Agriculture Appropriations Act to require the USDA’s Animal & Plant Health Inspection Service to update and finalize regulations on marine mammal captivity [@SchiffandHuffman]. On behalf of SeaWorld investors, the Rosen Law Firm filed a class action lawsuit against SeaWorld in 2014 for 
 
 
-
-## Chevron
-
 ## Starbucks
 On October 9th the Starbucks Workers United posted to their Twitter “Solidarity with Palestine” [@apnews]. This tweet was up for 40 minutes before it was taken down and was originally posted without the approval of union leaders according to Workers United. Even after the post was taken down, posts and retweets from local Starbucks United twitter accounts in support of Palestine and condemning Israel were circulating. On October 13th, Starbucks sent a letter to Workers United, demanding the union to stop using the Starbucks name and similar logo. Workers United retaliated saying that Starbucks was using the tragedy in the Middle East to support their anti-union campaign. 
 
 
 # Data {#sec-data}
+## Source Data and Methodology
+Discuss where data is from 
+We want the reader to understand what the data that underpin the results look like.
 
+Stock prices go up when people think it's worth more than what it is trading at -> supply and demand -> as more people want it the prices goes up. 
+
+
+
+
+## Data Cleaning
 In @tbl-rawdataNKE, the data's date and stock price are shown.
 
 ```{r}
@@ -87,6 +105,11 @@ knitr::kable(rawdataNKE,
       )
 ```
 
+
+## Stock Prices 
+
+
+
 @fig-linegraphNKE shows the change in stock price during boycotting of Nike.
 ```{r}
 #| label: fig-linegraphNKE
@@ -96,7 +119,7 @@ knitr::kable(rawdataNKE,
 cleaned_data_NKE |>
   ggplot(mapping = aes(x = Date, y = Close)) +
   geom_line(color="#0000c2") +
-  labs(x = "July 11th, 1991 to May 19th, 1998", y = "Stock Price at Closing",) +
+  labs(x = "July 12th, 1991 to May 19th, 1998", y = "Stock Price at Closing",) +
   scale_x_date(
     breaks = "12 months",
     labels = scales::label_date_short(
@@ -110,7 +133,7 @@ cleaned_data_NKE |>
 @fig-linegraphPRKS shows the change in stock price during boycotting of United Parks and Recreation.
 ```{r}
 #| label: fig-linegraphPRKS
-#| fig-cap: Changes in United Parks and Recreation Stock Price from One Week Before the Commencement of Blackfish was Released to One Week After Their Pledge to End Orca Breeding
+#| fig-cap: Changes in United Parks and Recreation Stock Price from One Week Before Blackfish was Released to One Week After Their Pledge to End Orca Breeding
 #| echo: false
 
 cleaned_data_PRKS |>
@@ -128,25 +151,80 @@ cleaned_data_PRKS |>
 ```
 
 
-
+@fig-linegraphsSBUX shows 
 ```{r}
-#| label: fig-linegraphNIKE
-#| fig-cap: Changes in United Parks and Recreation Stock Price from One Week Before the Commencement of Blackfish was Released to One Week After Their Pledge to End Orca Breeding
+#| label: fig-linegraphSBUX
+#| fig-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United to March 28th
 #| echo: false
+
+cleaned_data_SBUX |>
+  ggplot(mapping = aes(x = Date, y = Close)) +
+  geom_line(color="#0000c2") +
+  labs(x = "July 12th, 2013 to May 17th, 2016", y = "Stock Price at Closing",) +
+  scale_x_date(
+    breaks = "1 month",
+    labels = scales::label_date_short(
+      format = c("%y", "%b"),
+      sep = "\n")) +
+  ylim(80,110) + 
+  theme_minimal()
+```
+
+# Results
+
+## Overall Change in Stock Price
+
+@tbl-starttoendNKE shows a 
+```{r}
+#| label: tbl-starttoendNKE
+#| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United to March 28th
+#| echo: false
+
+
+starttoend_NKE <- cleaned_data_NKE |>
+  filter(Date == '1991-07-12' | Date == '1991-07-18' | Date == '1998-05-19')
+
+starttoend_NKE <-
+  starttoend_NKE |> 
+  mutate(Difference = Close - lag(Close)) 
+
+
+```
+@tbl-starttoendPRKS shows that there was a significant decrease in 
+```{r}
+#| label: tbl-starttoendPRKS
+#| tbl-cap: Changes in United Parks & Recreation Stock Price from One Week Before Blackfish was Released to their Announcement that they will end their Orca Breeding Program
+#| echo: false
+
+
+starttoendPRKS <- cleaned_data_PRKS |>
+  filter(Date == '2013-07-12' | Date == '2013-07-19' | Date == '2016-03-16')
+
+starttoendPRKS <-
+  starttoendPRKS |> 
+  mutate(Difference = Close - lag(Close)) 
+
 
 ```
 
-Talk way more about it.
+/newpage
 
 # Discussion
 
-## First discussion point {#sec-first-point}
+## Out of Sight, Out of Mind: Nike isn't the Only One
 
 If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this.
 
-## Second discussion point
 
-## Third discussion point
+## SeaWorld: The Tainted Consumer Experience
+
+
+## Starbucks: Impact of Unionization on Stockprice
+Investors care about the company's cash flows/earnings margin, when unions are created, the employees get better treatment the earnings margin is affects and is lowered, which investors do not like. Thus, it is likely that stock price went up when Starbucks and Workers United decided to sue each other. They think that Starbucks is gonna win the lawsuit, 
+
+
+
+
 
 ## Weaknesses and next steps
 
@@ -154,44 +232,5 @@ Weaknesses and next steps should also be included.
 
 \newpage
 
-\appendix
-
-# Appendix {.unnumbered}
-
-# Additional data details
-
-# Model details {#sec-model-details}
-
-## Posterior predictive check
-
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
-
-
-```
-
-## Diagnostics
-
-```{r}
-#| echo: false
-#| eval: true
-#| message: false
-#| warning: false
-#| label: fig-stanareyouokay
-#| fig-cap: "Checking the convergence of the MCMC algorithm"
-#| fig-subcap: ["Trace plot", "Rhat plot"]
-#| layout-ncol: 2
-
-
-```
-
-\newpage
 
 # References
