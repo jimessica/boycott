@@ -11,8 +11,17 @@
 #### Workspace setup ####
 library(opendatatoronto)
 library(tidyverse)
+library(tidyquant)
+
+
 
 #### Download data ####
+SPX <- tq_get('SPX',
+               from = "1991-07-12",
+               to = "2023-03-29",
+               get = "stock.prices")
+
+
 raw_data_NKE <- read_csv("data/raw_data/raw_data_NKE.csv")
 raw_data_PRKS <- read_csv("data/raw_data/raw_data_PRKS.csv")
 raw_data_SBUX <- read_csv("data/raw_data/raw_data_SBUX.csv")

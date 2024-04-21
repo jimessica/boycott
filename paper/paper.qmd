@@ -109,7 +109,6 @@ knitr::kable(rawdataNKE,
 ## Stock Prices 
 
 
-
 @fig-linegraphNKE shows the change in stock price during boycotting of Nike.
 ```{r}
 #| label: fig-linegraphNKE
@@ -174,9 +173,11 @@ cleaned_data_SBUX |>
 
 # Results
 
-## Overall Change in Stock Price
+## Overall Change in Stock Price at Commencement and End of Boycott
+@tbl-starttoendNKE, @tbl-starttoendPRKS, and @tbl-starttoendSBUX summarizes the change in stock price between a week before the boycott commenced and its commencement date as well as the difference between the start and end dates of the boycott. The first date is the stock price a week before the stock price and the second date is the day the boycott began. 
 
-@tbl-starttoendNKE shows a 
+
+@tbl-starttoendNKE shows a small decrease in stock price from a week before the beginning of the boycott. There is also an increase in stock price from the day the boycott started to the day it ended. Relative to the stock price, the change is very large as it multiplied by 3.34 times. 
 ```{r}
 #| label: tbl-starttoendNKE
 #| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
@@ -188,7 +189,7 @@ starttoend_NKE <- cleaned_data_NKE |>
 
 starttoend_NKE <-
   starttoend_NKE |> 
-  mutate(Difference = Close - lag(Close)) 
+  mutate(Difference = Close - lag(Close))
 
 kable(starttoend_NKE, 
       col.names = c("Date", 
@@ -198,7 +199,9 @@ kable(starttoend_NKE,
       linesep = ""
 )
 ```
-@tbl-starttoendPRKS shows that there was a significant decrease in 
+
+
+@tbl-starttoendPRKS shows that there was a significant decrease in stock price from the beginning to end of the boycott. 
 ```{r}
 #| label: tbl-starttoendPRKS
 #| tbl-cap: Changes in United Parks & Recreation Stock Price from One Week Before Blackfish was Released, to the Date it was Released, to their Announcement that they will end their Orca Breeding Program
@@ -222,7 +225,7 @@ kable(starttoendPRKS,
 ```
 
 
-@tbl-starttoendSBUX shows a 
+@tbl-starttoendSBUX shows minimal change in stock price throughout the boycott. 
 ```{r}
 #| label: tbl-starttoendSBUX
 #| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
@@ -230,7 +233,7 @@ kable(starttoendPRKS,
 
 
 starttoendSBUX <- cleaned_data_SBUX |>
-  filter(Date == '1991-07-12' | Date == '1991-07-18' | Date == '1998-05-19')
+  filter(Date == '2023-10-11' | Date == '2023-10-18' | Date == '2024-03-28')
 
 starttoendSBUX <-
   starttoendSBUX |> 
@@ -245,9 +248,28 @@ kable(starttoendSBUX,
 )
 ```
 
-\newpage
+@tbl-twoweeksSBUX
+
+```{r}
+#| label: tbl-twoweeksSBUX
+#| tbl-cap: Changes in Starbucks Stock Price Two Weeks From the Lawsuit
+#| echo: false
+
+starttoendSBUX <- 
+  cleaned_data_SBUX |>
+  filter(between(Date, as.Date('2023-10-18'), as.Date('2023-11-06')))
+
+kable(starttoendSBUX, 
+      col.names = c("Date", 
+                    "Closing Stock Price"),
+      booktabs = TRUE,
+      linesep = ""
+)
+```
+
 
 # Discussion
+
 
 
 ## Out of Sight, Out of Mind: Nike isn't the Only One
@@ -260,7 +282,6 @@ If my paper were 10 pages, then should be be at least 2.5 pages. The discussion 
 
 ## Starbucks: Impact of Unionization on Stockprice
 Investors care about the company's cash flows/earnings margin, when unions are created, the employees get better treatment the earnings margin is affects and is lowered, which investors do not like. Thus, it is likely that stock price went up when Starbucks and Workers United decided to sue each other. They think that Starbucks is gonna win the lawsuit, 
-
 
 
 
