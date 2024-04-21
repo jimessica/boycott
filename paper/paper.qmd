@@ -25,6 +25,7 @@ library(janitor)
 library(kableExtra)
 library(ggplot2)
 library(xts)
+library(tidyquant)
 
 
 cleaned_data_NKE <- read.csv("../data/analysis_data/cleaned_data_NKE.csv")
@@ -47,6 +48,12 @@ cleaned_data_SBUX <-
   mutate(Date = lubridate::ymd(Date))
 cleaned_data_SBUX$Date <- 
   as.Date(cleaned_data_SBUX$Date, format='%Y-%m-%d')
+
+raw_data_SPX <- tq_get('SPX',
+               from = "1991-07-12",
+               to = "2023-03-29",
+               get = "stock.prices")
+
 ```
 
 # Introduction
@@ -168,6 +175,26 @@ cleaned_data_SBUX |>
   ylim(80,110) + 
   theme_minimal()
 ```
+
+
+```{r}
+SBUX_SPX <-
+  cleaned_data_SPX |>
+  filter(between(date, as.Date('2023-10-18'), as.Date('2023-11-06')))
+
+class(cleaned_data_SPX$date)
+
+
+matplot(cleaned_data_SBUX, cbind(cleaned_data_SBUX$Close, cleaned_data_SPX$close), type = "l", lty = 1, 
+        col = c("red", "blue"), xlab = "X", 
+        ylab = "Y", main = "Multiple Lines Plot")
+legend("topright", legend = c("Line 1", "Line 2"), 
+       col = c("red", "blue"), 
+       lty = 1)
+```
+
+
+
 
 \newpage
 
