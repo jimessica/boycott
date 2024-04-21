@@ -51,8 +51,12 @@ cleaned_data_SBUX$Date <-
 
 raw_data_SPX <- tq_get('SPX',
                from = "1991-07-12",
-               to = "2023-03-29",
+               to = "2024-03-29",
                get = "stock.prices")
+
+cleaned_data_SPX <-
+  raw_data_SPX |>
+  select(symbol, date, close)
 
 ```
 
@@ -83,6 +87,8 @@ Discuss where data is from
 We want the reader to understand what the data that underpin the results look like.
 
 Stock prices go up when people think it's worth more than what it is trading at -> supply and demand -> as more people want it the prices goes up. 
+
+## Limitations
 
 
 
@@ -178,19 +184,28 @@ cleaned_data_SBUX |>
 
 
 ```{r}
-SBUX_SPX <-
+#| label: tbl-SPXandPRKS
+#| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
+#| echo: false
+
+PRKS_SPX <-
   cleaned_data_SPX |>
-  filter(between(date, as.Date('2023-10-18'), as.Date('2023-11-06')))
+  filter(between(date, as.Date('2013-07-19'), as.Date('2016-03-16')))
 
-class(cleaned_data_SPX$date)
+PRKS_Focus <-
+  cleaned_data_PRKS |>
+  filter(between(Date, as.Date('2013-07-19'), as.Date('2016-03-16')))
 
+SPX_Stocks <- PRKS_SPX$close
+PRKS_Stocks <- PRKS_Focus$Close
 
-matplot(cleaned_data_SBUX, cbind(cleaned_data_SBUX$Close, cleaned_data_SPX$close), type = "l", lty = 1, 
-        col = c("red", "blue"), xlab = "X", 
-        ylab = "Y", main = "Multiple Lines Plot")
-legend("topright", legend = c("Line 1", "Line 2"), 
-       col = c("red", "blue"), 
-       lty = 1)
+PRKS_Date <- PRKS_Focus$Date
+
+par(mfrow=c(2,1))
+par(mar = c(0, 0, 0, 0))
+plot(PRKS_Date,PRKS_Stocks, type="l", col="red" )
+plot(PRKS_Date,SPX_Stocks, type="l", col="green" )
+
 ```
 
 
@@ -282,13 +297,18 @@ kable(starttoendSBUX,
 #| tbl-cap: Changes in Starbucks Stock Price Two Weeks From the Lawsuit
 #| echo: false
 
-starttoendSBUX <- 
+twoweeksSBUX <- 
   cleaned_data_SBUX |>
   filter(between(Date, as.Date('2023-10-18'), as.Date('2023-11-06')))
 
-kable(starttoendSBUX, 
+twoweeksSBUX <-
+  twoweeksSBUX |> 
+  mutate(Difference = Close - lag(Close)) 
+
+kable(twoweeksSBUX, 
       col.names = c("Date", 
-                    "Closing Stock Price"),
+                    "Closing Stock Price",
+                    "Difference"),
       booktabs = TRUE,
       linesep = ""
 )
