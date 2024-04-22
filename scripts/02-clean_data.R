@@ -9,13 +9,14 @@
 
 #### Workspace setup ####
 library(tidyverse)
+library(arrow)
 
 #### Clean data ####
 raw_data_NKE <- read_csv("data/raw_data/raw_data_NKE.csv")
 raw_data_PRKS <- read_csv("data/raw_data/raw_data_PRKS.csv")
 raw_data_SBUX <- read_csv("data/raw_data/raw_data_SBUX.csv")
-
-raw_data_SPX <- read_csv("data/raw_data/raw_data_SPX.csv")
+raw_data_DJI <- read_parquet("data/raw_data/raw_data_DJI.parquet")
+raw_data_SPX <- read_parquet("data/raw_data/raw_data_SPX.parquet")
 
 ## Selecting only the date and stock price at close
 # Cleaning dates referenced code from: https://epirhandbook.com/en/working-with-dates.html
@@ -52,6 +53,10 @@ cleaned_data_SPX <-
   raw_data_SPX |>
   select(symbol, date, close)
 
+cleaned_data_DJI <-
+  raw_data_DJI |>
+  select(symbol, date, close)
+
 #### Save data ####
 # Nike
 write_csv(cleaned_data_NKE, "data/analysis_data/cleaned_data_NKE.csv")
@@ -60,7 +65,6 @@ write_csv(cleaned_data_NKE, "data/analysis_data/cleaned_data_NKE.csv")
 write_csv(cleaned_data_PRKS, "data/analysis_data/cleaned_data_PRKS.csv")
 
 # Starbucks
-write_csv(cleaned_data_SBUX, "data/analysis_data/cleaned_data_SBUX.csv")
+write_parquet(cleaned_data_SPX, "data/analysis_data/cleaned_data_SPX.parquet")
 
-
-write_csv(cleaned_data_SPX, "data/analysis_data/cleaned_data_SPX.csv")
+write_parquet(cleaned_data_DJI, "data/analysis_data/cleaned_data_DJI.parquet")

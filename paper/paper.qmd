@@ -26,6 +26,7 @@ library(kableExtra)
 library(ggplot2)
 library(xts)
 library(tidyquant)
+library(arrow)
 
 
 cleaned_data_NKE <- read.csv("../data/analysis_data/cleaned_data_NKE.csv")
@@ -57,6 +58,11 @@ raw_data_SPX <- tq_get('SPX',
 cleaned_data_SPX <-
   raw_data_SPX |>
   select(symbol, date, close)
+
+
+cleaned_data_DJI <-read_parquet("../data/analysis_data/cleaned_data_DJI.parquet")
+
+
 
 ```
 
@@ -186,31 +192,6 @@ cleaned_data_SBUX |>
 ```
 
 
-```{r}
-#| label: tbl-SPXandPRKS
-#| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
-#| echo: false
-
-PRKS_SPX <-
-  cleaned_data_SPX |>
-  filter(between(date, as.Date('2013-07-19'), as.Date('2016-03-16')))
-
-PRKS_Focus <-
-  cleaned_data_PRKS |>
-  filter(between(Date, as.Date('2013-07-19'), as.Date('2016-03-16')))
-
-SPX_Stocks <- PRKS_SPX$close
-PRKS_Stocks <- PRKS_Focus$Close
-
-PRKS_Date <- PRKS_Focus$Date
-
-par(mfrow=c(2,1))
-par(mar = c(0, 0, 0, 0))
-plot(PRKS_Date,PRKS_Stocks, type="l", col="red" )
-plot(PRKS_Date,SPX_Stocks, type="l", col="green" )
-
-```
-
 
 
 
@@ -317,6 +298,59 @@ kable(twoweeksSBUX,
 )
 ```
 
+@tbl-SPXandPRKS
+```{r}
+#| label: tbl-SPXandPRKS
+#| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
+#| echo: false
+
+PRKS_SPX <-
+  cleaned_data_SPX |>
+  filter(between(date, as.Date('2013-07-19'), as.Date('2016-03-16')))
+
+PRKS_Focus <-
+  cleaned_data_PRKS |>
+  filter(between(Date, as.Date('2013-07-19'), as.Date('2016-03-16')))
+
+SPX_Stocks <- PRKS_SPX$close
+PRKS_Stocks <- PRKS_Focus$Close
+
+PRKS_Date <- PRKS_Focus$Date
+
+par(mfrow=c(2,1))
+par(mar = c(0, 0, 0, 0))
+plot(PRKS_Date,PRKS_Stocks, type="l", col="#0000c2" )
+plot(PRKS_Date,SPX_Stocks, type="l", col="#FF5733" )
+
+```
+
+
+
+@tbl-DJIandNIKE
+```{r}
+#| label: tbl-DJIandNIKE
+#| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
+#| echo: false
+
+NIKE_DJI <-
+  cleaned_data_DJI |>
+  filter(between(date, as.Date('1991-07-18'), as.Date('1998-05-19')))
+
+NIKE_Focus <-
+  cleaned_data_NKE |>
+  filter(between(Date, as.Date('1991-07-18'), as.Date('1998-05-19')))
+
+DJI_Stocks <- NIKE_DJI$close
+NIKE_Stocks <- NIKE_Focus$Close
+
+NIKE_Date <- NIKE_Focus$Date
+
+par(mfrow=c(2,1))
+par(mar = c(0, 0, 0, 0))
+plot(NIKE_Date,NIKE_Stocks, type="l", col="#0000c2" )
+plot(NIKE_Date,DJI_Stocks, type="l", col="#FF5733" )
+
+```
 
 # Discussion
 
