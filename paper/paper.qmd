@@ -68,10 +68,11 @@ cleaned_data_DJI <-read_parquet("../data/analysis_data/cleaned_data_DJI.parquet"
 ```
 
 # Introduction
+Boycotting is a common way for consumers to cast their vote on the amount of power corporations and institutions should have. Boycotting is usually done by avoiding purchasing from a company or withdrawing support for an institution [@ethicalconsumer]. It is oftentimes a response to an ethical violation and has had most success by impacting the public image of the company through generating negative media coverage [@northwestern]. As businesses have grown and markets have been dominated by oligopolies, consumers feel ignored and alienated [@kokuthreats]. As a result, boycotting has increased and between 1984 to 1990 boycotting increased by 769%. Recently, the Boycott, Divestment, Sanctions (BDS) movement in support of Palestine’s freedom and justice has introduced a new wave of companies being boycotted. Many debates surround the effectiveness of boycotting and whether it can inflict substantial financial losses for  targeted organizations. 
 
-You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
+The objective of this paper is to determine the impact of boycotting on stock prices and the role earnings calls, product or service type, and social media has. To investigate, Nike, United Parks and Recreation, and Starbucks’s stock prices will be analyzed. 
 
-In [Background](#sec-background), the history of why each company was or is being boycotted is explained. In the following section, [Data](#sec-data),
+In the following section, [Background](@sec-background), the history of why each company was or is being boycotted is explained. In [Data](#sec-data), the dataset, variables used, limitations of the data, and methodology for analysis and cleaning are explained. In [Results](#sec-results), there are detailed explorations of the difference in stock price over the boycott, comparisons with the overall market, and an analysis of important dates during the boycotts. Finally, the [Discussion](#sec-discussion) explores the impact of earnings calls, product or service type, and social media.
 
 # Background {#sec-background}
 
@@ -93,13 +94,15 @@ A sense of the dataset should be communicated to the reader. The broader context
 
 ## Source Data and Methodology
 
-The source data was obtained from Yahoo Finance Canada [@yahoo] and the R package [@R-tidyquant]. The Yahoo Finance Canada historical data was filtered for the desired date range and daily data before being downloaded. The original data had “Date”, “Open”, “High”, “Low”, “Close”, “Adj Close”, and “Volume”. The only variables of interest were “Date” and “Close” which represented the date of the stock’s price and the price when the market closed respectively. 
+The source data was obtained from Yahoo Finance Canada [@yahoo] and the R package [@R-tidyquant]. The Yahoo Finance Canada historical data was filtered for the desired date range and daily data before being downloaded. The original data had “Date”, “Open”, “High”, “Low”, “Close”, “Adj Close”, and “Volume”. The only variables of interest were “Date” and “Close” which represented the date of the stock’s price and the price when the market closed respectively.
 
 ## Limitations
 
 ## Data Cleaning
 
-The data was cleaned using the statistical programming language R [@citeR] as well as library packages `tidyverse` [@R-tidyverse], `tinytex` [@R-tinytex],`ggplot2` [@R-ggplot2], `dplyr` [@R-dplyr], `readr` [@R-readr], `tibble` [@R-tibble], `stringr` [@R-stringr], `kableExtra` [@R-kableExtra], `janitor` [@R-janitor],  `xts` [@R-xts], and `knitr` [@knitr2015], and `arrow` [@arrow]. The data was cleaned by selecting the two variables “Date” and “Close”  which are shown in @tbl-rawdataNKE below @tbl-rangeData, shows the number of days observed as part of the boycott in addition to one week before it started. It also indicates the start and end date of each dataset. The largest range was Nike at nearly 7 years compared to the less than 4 months Starbucks has been observed for. Each company also represents a different decade, with Nike in the 1990s, Parks in the 2010s, and most recently Starbucks in the 2020s. 
+The data was cleaned using the statistical programming language R [@citeR] as well as library packages `tidyverse` [@R-tidyverse], `tinytex` [@R-tinytex],`ggplot2` [@R-ggplot2], `dplyr` [@R-dplyr], `readr` [@R-readr], `tibble` [@R-tibble], `stringr` [@R-stringr], `kableExtra` [@R-kableExtra], `janitor` [@R-janitor],  `xts` [@R-xts], and `knitr` [@knitr2015], and `arrow` [@R-arrow]. The data was cleaned by selecting the two variables “Date” and “Close”  which are shown in @tbl-rawdataNKE below @tbl-rangeData, shows the number of days observed as part of the boycott in addition to one week before it started. It also indicates the start and end date of each dataset. The largest range was Nike at nearly 7 years compared to the less than 4 months Starbucks has been observed for. Each company also represents a different decade, with Nike in the 1990s, Parks in the 2010s, and most recently Starbucks in the 2020s. 
+
+
 
 
 ```{r}
@@ -163,7 +166,7 @@ knitr::kable(dataALL,
 
 ## Change in Stock Price
 
-@fig-linegraphNKE shows the change in stock price during boycotting of Nike.
+The change in stock price over the length of the boycott is observed in @fig-linegraphNKE, @fig-linegraphPRKS, and @fig-linegraphSBUX. These three graphs show a week before the boycott started to the end of the boycott. @fig-linegraphNKE shows that the first three years were relatively unstable, with stock prices rising later in 1991 before dropping slightly and then peaking early in 1993 before descending to a low a year later. A progressive cimb from that point to February of 1997 sees a growth of around 750%. 
 
 ```{r}
 #| label: fig-linegraphNKE
@@ -227,7 +230,7 @@ cleaned_data_SBUX |>
 
 \newpage
 
-# Results
+# Results {#sec-results}
 
 ## Overall Change in Stock Price at Commencement and End of Boycott
 
@@ -412,7 +415,7 @@ grid.arrange(plot_nike, plot_dji, ncol = 1)
 
 ```
 
-# Discussion
+# Discussion {#sec-discussion}
 
 ## 
 
