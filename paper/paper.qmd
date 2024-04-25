@@ -3,7 +3,7 @@ title: "My title"
 subtitle: "My subtitle if needed"
 author: 
   - Jessica Im
-thanks: "Code and data are available at: https://github.com/jimessica/boycott"
+thanks: "Code and data are available at: [https://github.com/jimessica/boycott)](https://github.com/jimessica/boycott)"
 date: today
 date-format: long
 abstract: "Introduction to the topic and its importance. What I did in my research and analysis. What was found from my research and analysis. Significance of my findings."
@@ -27,8 +27,11 @@ library(ggplot2)
 library(xts)
 library(tidyquant)
 library(arrow)
+library(readr)
+library(gridExtra)
 
-
+## Import cleaned data and turn "Date" into class Date
+# Nike
 cleaned_data_NKE <- read.csv("../data/analysis_data/cleaned_data_NKE.csv")
 cleaned_data_NKE <- 
   cleaned_data_NKE |>
@@ -36,6 +39,7 @@ cleaned_data_NKE <-
 cleaned_data_NKE$Date <- 
   as.Date(cleaned_data_NKE$Date, format='%Y-%m-%d')
 
+# United Parks and Recreation
 cleaned_data_PRKS <- read.csv("../data/analysis_data/cleaned_data_PRKS.csv")
 cleaned_data_PRKS <- 
   cleaned_data_PRKS |>
@@ -43,6 +47,7 @@ cleaned_data_PRKS <-
 cleaned_data_PRKS$Date <- 
   as.Date(cleaned_data_PRKS$Date, format='%Y-%m-%d')
 
+#Starbucks
 cleaned_data_SBUX <- read.csv("../data/analysis_data/cleaned_data_SBUX.csv")
 cleaned_data_SBUX <- 
   cleaned_data_SBUX |>
@@ -50,16 +55,12 @@ cleaned_data_SBUX <-
 cleaned_data_SBUX$Date <- 
   as.Date(cleaned_data_SBUX$Date, format='%Y-%m-%d')
 
-raw_data_SPX <- tq_get('SPX',
-               from = "1991-07-12",
-               to = "2024-03-29",
-               get = "stock.prices")
 
-cleaned_data_SPX <-
-  raw_data_SPX |>
-  select(symbol, date, close)
+## Import S&P 500 Index and Dow Jones Index Data
+# S&P 500
+cleaned_data_SPX <-read_parquet("../data/analysis_data/cleaned_data_SPX.parquet")
 
-
+# Dow Jones 
 cleaned_data_DJI <-read_parquet("../data/analysis_data/cleaned_data_DJI.parquet")
 
 
@@ -70,40 +71,36 @@ cleaned_data_DJI <-read_parquet("../data/analysis_data/cleaned_data_DJI.parquet"
 
 You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
 
-In [Background], the history of why each company was or is being boycotted is explained. In the following section, [Data], 
+In [Background](#sec-background), the history of why each company was or is being boycotted is explained. In the following section, [Data](#sec-data),
 
-# Background
+# Background {#sec-background}
 
 ## Nike (NKE)
 
 In August of 1992, Jeffrey Ballinger published “The new free-trade heel: Nike's profits jump on the backs of Asian workers” in a Harper’s Bazaar issue [@harpers]. This publication revealed the low pay and poor working conditions in Nike’s Southeast Asian and Middle Eastern sweatshops [@ethically]. Later that year, Nike released the “Code of Conduct and Memorandum of Understanding” for contract workers, but the labour controversy was well underway. In the following years, protests in Southeast Asia and the United States raged on. Protests at the Barcelona Olympics in 1992 and the founding of Ballinger’s labour group Press for Change in 1993 brought new waves of media attention to the cause. After years of Nike promotions fueling more public outrage, in 1998, Nike’s then-CEO Phil Knight announced that Nike will raise minimum wage, increase monitoring, and introduce U.S. clean air standards at all factories [@ethically]. Knight acknowledged the brand’s association with workplace abuse and stated that "the American consumer doesn’t want to buy products made under abusive conditions”. This speech marked the shift away from boycotting and for the purposes of this paper will represent the end of Nike boycotting.
 
-
 ## United Parks and Recreation
-Blackfish is a film focused on the cruel captivity of orcas by focusing on the infamous killer whale, Tilikum, who was kept in captivity at SeaWorld and was involved in the death of 3 people [@WAP]. The film was released in 2013 and shown on major channels like CNN, Netflix, and Universal Studios around the world and over its 14-week box office period in North America, earned $2,073,582 [@wikiBlackfish]. In March of 2014, California Assemblyman Richard Bloom proposed that orcas are banned from being held captive for entertainment [@CNNorcaban]. Later that year, U.S. Congressmen Adam Schiff and Jared Huffman amended the Agriculture Appropriations Act to require the USDA’s Animal & Plant Health Inspection Service to update and finalize regulations on marine mammal captivity [@SchiffandHuffman]. On behalf of SeaWorld investors, the Rosen Law Firm filed a class action lawsuit against SeaWorld in 2014 for 
 
+Blackfish is a film focused on the cruel captivity of orcas by focusing on the infamous killer whale, Tilikum, who was kept in captivity at SeaWorld and was involved in the death of 3 people [@WAP]. The film was released in 2013 and shown on major channels like CNN, Netflix, and Universal Studios around the world and over its 14-week box office period in North America, earned \$2,073,582 [@wikiBlackfish]. In March of 2014, California Assemblyman Richard Bloom proposed that orcas are banned from being held captive for entertainment [@CNNorcaban]. Later that year, U.S. Congressmen Adam Schiff and Jared Huffman amended the Agriculture Appropriations Act to require the USDA’s Animal & Plant Health Inspection Service to update and finalize regulations on marine mammal captivity [@SchiffandHuffman]. On behalf of SeaWorld investors, the Rosen Law Firm filed a class action lawsuit against SeaWorld in 2014 for
 
 ## Starbucks
-On October 9th the Starbucks Workers United posted to their Twitter “Solidarity with Palestine” [@apnews]. This tweet was up for 40 minutes before it was taken down and was originally posted without the approval of union leaders according to Workers United. Even after the post was taken down, posts and retweets from local Starbucks United twitter accounts in support of Palestine and condemning Israel were circulating. On October 13th, Starbucks sent a letter to Workers United, demanding the union to stop using the Starbucks name and similar logo. Workers United retaliated saying that Starbucks was using the tragedy in the Middle East to support their anti-union campaign. 
 
+On October 9th the Starbucks Workers United posted to their Twitter “Solidarity with Palestine” [@apnews]. This tweet was up for 40 minutes before it was taken down and was originally posted without the approval of union leaders according to Workers United. Even after the post was taken down, posts and retweets from local Starbucks United twitter accounts in support of Palestine and condemning Israel were circulating. On October 13th, Starbucks sent a letter to Workers United, demanding the union to stop using the Starbucks name and similar logo. Workers United retaliated saying that Starbucks was using the tragedy in the Middle East to support their anti-union campaign.
 
 # Data {#sec-data}
+
 A sense of the dataset should be communicated to the reader. The broader context of the dataset should be discussed. All variables should be thoroughly examined and explained. Explain if there were similar datasets that could have been used and why they were not. If variables were constructed then this should be mentioned, and high-level cleaning aspects of note should be mentioned, but this section should focus on the destination, not the journey. It is important to understand what the variables look like by including graphs, and possibly tables, of all observations, along with discussion of those graphs and the other features of these data. Summary statistics should also be included, and well as any relationships between the variables. If this becomes too detailed, then appendices could be used. Basically, for every variable in your dataset that is of interest to your paper there needs to be graphs and explanation and maybe tables.
 
-
 ## Source Data and Methodology
-The data used in this paper is from 
-We want the reader to understand what the data that underpin the results look like.
 
-Stock prices go up when people think it's worth more than what it is trading at -> supply and demand -> as more people want it the prices goes up. 
+The source data was obtained from Yahoo Finance Canada [@yahoo] and the R package [@R-tidyquant]. The Yahoo Finance Canada historical data was filtered for the desired date range and daily data before being downloaded. The original data had “Date”, “Open”, “High”, “Low”, “Close”, “Adj Close”, and “Volume”. The only variables of interest were “Date” and “Close” which represented the date of the stock’s price and the price when the market closed respectively. 
 
 ## Limitations
 
-
-
-
 ## Data Cleaning
-In @tbl-rawdataNKE, the data's date and stock price are shown.
+
+The data was cleaned using the statistical programming language R [@citeR] as well as library packages `tidyverse` [@R-tidyverse], `tinytex` [@R-tinytex],`ggplot2` [@R-ggplot2], `dplyr` [@R-dplyr], `readr` [@R-readr], `tibble` [@R-tibble], `stringr` [@R-stringr], `kableExtra` [@R-kableExtra], `janitor` [@R-janitor],  `xts` [@R-xts], and `knitr` [@knitr2015], and `arrow` [@arrow]. The data was cleaned by selecting the two variables “Date” and “Close”  which are shown in @tbl-rawdataNKE below @tbl-rangeData, shows the number of days observed as part of the boycott in addition to one week before it started. It also indicates the start and end date of each dataset. The largest range was Nike at nearly 7 years compared to the less than 4 months Starbucks has been observed for. Each company also represents a different decade, with Nike in the 1990s, Parks in the 2010s, and most recently Starbucks in the 2020s. 
+
 
 ```{r}
 #| label: tbl-rawdataNKE
@@ -127,11 +124,47 @@ knitr::kable(rawdataNKE,
       )
 ```
 
+```{r}
+#| label: tbl-rangeData
+#| tbl-cap: "The range of time each company's stock was observed for."
+#| echo: false
 
-## Stock Prices 
 
+N_NKE = nrow(cleaned_data_NKE)
+N_PRKS = nrow(cleaned_data_PRKS)
+N_SBUX = nrow(cleaned_data_SBUX)
+
+Day1_NKE = cleaned_data_NKE[1,1]
+Day2_NKE = cleaned_data_NKE[N_NKE,1]
+
+Day1_PRKS = cleaned_data_PRKS[1,1]
+Day2_PRKS = cleaned_data_PRKS[N_PRKS,1]
+
+Day1_SBUX = cleaned_data_SBUX[1,1]
+Day2_SBUX = cleaned_data_SBUX[N_SBUX,1]
+
+
+dataALL <- data.frame(
+  "Companies" = c("Nike (NKE)", "United Parks and Recreation (PRKS)", "Starbucks (SBUX)"),
+  "Days Observed" = c(N_NKE, N_PRKS, N_SBUX),
+  "Date Start" = c(Day1_NKE, Day1_PRKS, Day1_SBUX),
+  "Date End" = c(Day2_NKE, Day2_PRKS, Day2_SBUX)
+)
+
+knitr::kable(dataALL, 
+      col.names = c("Companies", 
+                    "Days Observed",
+                    "Date Start" ,
+                    "Date End"),
+      booktabs = TRUE,
+      linesep = " "
+      )
+```
+
+## Change in Stock Price
 
 @fig-linegraphNKE shows the change in stock price during boycotting of Nike.
+
 ```{r}
 #| label: fig-linegraphNKE
 #| fig-cap: Changes in Nike Stock Price from One Week Before the Commencement of Labour Boycotts to One Week After Their Pledge to End Poor Working Conditions and Child Labour
@@ -152,6 +185,7 @@ cleaned_data_NKE |>
 ```
 
 @fig-linegraphPRKS shows the change in stock price during boycotting of United Parks and Recreation.
+
 ```{r}
 #| label: fig-linegraphPRKS
 #| fig-cap: Changes in United Parks and Recreation Stock Price from One Week Before Blackfish was Released to One Week After Their Pledge to End Orca Breeding
@@ -171,8 +205,8 @@ cleaned_data_PRKS |>
 
 ```
 
+@fig-linegraphSBUX shows
 
-@fig-linegraphsSBUX shows 
 ```{r}
 #| label: fig-linegraphSBUX
 #| fig-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United to March 28th
@@ -191,19 +225,16 @@ cleaned_data_SBUX |>
   theme_minimal()
 ```
 
-
-
-
-
 \newpage
 
 # Results
 
 ## Overall Change in Stock Price at Commencement and End of Boycott
-@tbl-starttoendNKE, @tbl-starttoendPRKS, and @tbl-starttoendSBUX summarizes the change in stock price between a week before the boycott commenced and its commencement date as well as the difference between the start and end dates of the boycott. The first date is the stock price a week before the stock price and the second date is the day the boycott began. 
 
+@tbl-starttoendNKE, @tbl-starttoendPRKS, and @tbl-starttoendSBUX summarizes the change in stock price between a week before the boycott commenced and its commencement date as well as the difference between the start and end dates of the boycott. The first date is the stock price a week before the stock price and the second date is the day the boycott began.
 
-@tbl-starttoendNKE shows a small decrease in stock price from a week before the beginning of the boycott. There is also an increase in stock price from the day the boycott started to the day it ended. Relative to the stock price, the change is very large as it multiplied by 3.34 times. 
+@tbl-starttoendNKE shows a small decrease in stock price from a week before the beginning of the boycott. There is also an increase in stock price from the day the boycott started to the day it ended. Relative to the stock price, the change is very large as it multiplied by 3.34 times.
+
 ```{r}
 #| label: tbl-starttoendNKE
 #| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
@@ -226,8 +257,8 @@ kable(starttoend_NKE,
 )
 ```
 
+@tbl-starttoendPRKS shows that there was a significant decrease in stock price from the beginning to end of the boycott.
 
-@tbl-starttoendPRKS shows that there was a significant decrease in stock price from the beginning to end of the boycott. 
 ```{r}
 #| label: tbl-starttoendPRKS
 #| tbl-cap: Changes in United Parks & Recreation Stock Price from One Week Before Blackfish was Released, to the Date it was Released, to their Announcement that they will end their Orca Breeding Program
@@ -250,8 +281,8 @@ kable(starttoendPRKS,
 )
 ```
 
+@tbl-starttoendSBUX shows minimal change in stock price throughout the boycott.
 
-@tbl-starttoendSBUX shows minimal change in stock price throughout the boycott. 
 ```{r}
 #| label: tbl-starttoendSBUX
 #| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
@@ -274,7 +305,8 @@ kable(starttoendSBUX,
 )
 ```
 
-@tbl-twoweeksSBUX
+
+@tbl-twoweeksSBUX shows the 
 
 ```{r}
 #| label: tbl-twoweeksSBUX
@@ -298,10 +330,17 @@ kable(twoweeksSBUX,
 )
 ```
 
-@tbl-SPXandPRKS
+
+
+@fig-spxPRKS compares the stock of United Parks & Recreation with the S&P 500 index (SPX) [@spx]. The S&P 500 is known as the best representation of how the U.S. stock market is doing overall. By comparing the United Parks and Recreation stock price with the S&P, the decrease in the United Parks and Recreation stock price can be understood within the context of 
+
+@fig-djiNKE compares the stock price of Nike and the Dow Jones Index (DJI) [@dji]. The Dow Jones Industrial Average is a stock market index that tracks 30 large companies in the United States, primarily in consumer goods []. Arguably, this index can represent the U.S. economy and serves to show how Nike’s change in stock price may be attributed to growth in the economy. 
+
+
+
 ```{r}
-#| label: tbl-SPXandPRKS
-#| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
+#| label: fig-spxPRKS
+#| fig-cap: Changes in United Parks and Recreation Stock Price in Comparison with the S&P 500 index
 #| echo: false
 
 PRKS_SPX <-
@@ -317,19 +356,28 @@ PRKS_Stocks <- PRKS_Focus$Close
 
 PRKS_Date <- PRKS_Focus$Date
 
-par(mfrow=c(2,1))
-par(mar = c(0, 0, 0, 0))
-plot(PRKS_Date,PRKS_Stocks, type="l", col="#0000c2" )
-plot(PRKS_Date,SPX_Stocks, type="l", col="#FF5733" )
+# Plot PRKS
+plot_prks <- ggplot(PRKS_Focus, aes(x = PRKS_Date, y = PRKS_Stocks)) +
+  geom_line(color = "#0000c2") +
+  labs(title = "United Parks and Rec Stock Price",
+       x = "Date", y = "Stock Price") +
+  theme_minimal()
 
+# Plot SPX
+plot_spx <- ggplot(PRKS_SPX, aes(x = PRKS_Date, y = SPX_Stocks)) +
+  geom_line(color = "#FF5733") +
+  labs(title = "S&P 500 Index",
+       x = "Date", y = "Index Value") +
+  theme_minimal()
+
+# Arrange plots
+grid.arrange(plot_prks, plot_spx, ncol = 1)
 ```
 
 
-
-@tbl-DJIandNIKE
 ```{r}
-#| label: tbl-DJIandNIKE
-#| tbl-cap: Changes in Starbucks Stock Price from One Week Before Legal Action Against Workers United, the the Day it was Announced, to March 28th
+#| label: fig-djiNKE
+#| fig-cap: Changes in the Nike Stock Price in Comparison with the Dow Jones Index
 #| echo: false
 
 NIKE_DJI <-
@@ -345,14 +393,30 @@ NIKE_Stocks <- NIKE_Focus$Close
 
 NIKE_Date <- NIKE_Focus$Date
 
-par(mfrow=c(2,1))
-par(mar = c(0, 0, 0, 0))
-plot(NIKE_Date,NIKE_Stocks, type="l", col="#0000c2" )
-plot(NIKE_Date,DJI_Stocks, type="l", col="#FF5733" )
+# Plot Nike
+plot_nike <- ggplot(NIKE_Focus, aes(x = NIKE_Date, y = NIKE_Stocks)) +
+  geom_line(color = "#0000c2") +
+  labs(title = "Nike Stock Price",
+       x = "Date", y = "Stock Price") +
+  theme_minimal()
+
+# Plot DJI
+plot_dji <- ggplot(NIKE_DJI, aes(x = NIKE_Date, y = DJI_Stocks)) +
+  geom_line(color = "#FF5733") +
+  labs(title = "Dow Jones Index",
+       x = "Date", y = "Index Value") +
+  theme_minimal()
+
+# Arrange plots
+grid.arrange(plot_nike, plot_dji, ncol = 1)
 
 ```
 
 # Discussion
+
+## 
+
+On November 2nd, Starbucks released their Q4 and Full Year Fiscal Results. Some highlights were record net revenues, store sales up by 8% globally, and record number of stores [@investstarbucks]. In @tbl-twoweeksSBUX, the largest difference in stock price happens on November 2nd at a jump in $8.67. After, 
 
 
 
@@ -360,23 +424,20 @@ plot(NIKE_Date,DJI_Stocks, type="l", col="#FF5733" )
 
 If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this.
 
-
 ## SeaWorld: The Tainted Consumer Experience
 
-
 ## Starbucks: Impact of Unionization on Stockprice
-Investors care about the company's cash flows/earnings margin, when unions are created, the employees get better treatment the earnings margin is affects and is lowered, which investors do not like. Thus, it is likely that stock price went up when Starbucks and Workers United decided to sue each other. They think that Starbucks is gonna win the lawsuit, 
+
+
+
+Investors care about the company's cash flows/earnings margin, when unions are created, the employees get better treatment the earnings margin is affects and is lowered, which investors do not like. Thus, it is likely that stock price went up when Starbucks and Workers United decided to sue each other. They think that Starbucks is gonna win the lawsuit,
 
 On November 2nd, Starbucks released their Q4 and Full Year Fiscal Results. Some highlights were record net revenues, store sales up by 8% globally, and record number of stores [@investstarbucks]
-
-
-
 
 ## Weaknesses and next steps
 
 Weaknesses and next steps should also be included.
 
 \newpage
-
 
 # References
