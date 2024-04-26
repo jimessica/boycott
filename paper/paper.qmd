@@ -295,7 +295,7 @@ kable(starttoendSBUX,
 ```
 
 ## Detailed Observation of Change in Stock Price
-In @tbl-twoweeksNKEprotest, the daily difference in Nike's stock price following the international Global Exchange protest. The largest change is a week after the protest on the 27th with a drop in 5.79% or 35 cents. For a better understanding of the overall decline in 1997, @fig-linegraphNKEfocused shows changes in Nike's stock price. The company sees growth early in the year until a rapid drop from mid-February to mid-April. Another significant drop is from August until the end of the year. 
+In @tbl-twoweeksNKE, the daily difference in Nike's stock price following the international Global Exchange protest. The largest change is a week after the protest on the 27th with a drop in 5.79% or 35 cents. For a better understanding of the overall decline in 1997, @fig-linegraphNKEfocused shows changes in Nike's stock price. The company sees growth early in the year until a rapid drop from mid-February to mid-April. Another significant drop is from August until the end of the year. 
 
 
 @tbl-twoweeksSBUX shows the daily difference in stock price for two weeks from the announcement of the lawsuit. The stock prices were relatively unaffected immediately following the announcement and November 2nd is responsible for the large spike in price shown in @fig-linegraphSBUX
