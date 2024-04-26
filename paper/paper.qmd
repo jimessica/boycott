@@ -63,6 +63,8 @@ cleaned_data_SPX <-read_parquet("../data/analysis_data/cleaned_data_SPX.parquet"
 # Dow Jones 
 cleaned_data_DJI <-read_parquet("../data/analysis_data/cleaned_data_DJI.parquet")
 
+# Nasdaq 100
+cleaned_data_NDX <-read_parquet("../data/analysis_data/cleaned_data_NDX.parquet")
 
 
 ```
@@ -99,8 +101,8 @@ The source data was obtained from Yahoo Finance Canada [@yahoo] and the R packag
 ## Limitations
 
 ## Data Cleaning
-
 The data was cleaned using the statistical programming language R [@citeR] as well as library packages `tidyverse` [@R-tidyverse], `tinytex` [@R-tinytex],`ggplot2` [@R-ggplot2], `dplyr` [@R-dplyr], `readr` [@R-readr], `tibble` [@R-tibble], `stringr` [@R-stringr], `kableExtra` [@R-kableExtra], `janitor` [@R-janitor],  `xts` [@R-xts], and `knitr` [@knitr2015], and `arrow` [@R-arrow]. The data was cleaned by selecting the two variables “Date” and “Close”  which are shown in @tbl-rawdataNKE below @tbl-rangeData, shows the number of days observed as part of the boycott in addition to one week before it started. It also indicates the start and end date of each dataset. The largest range was Nike at nearly 7 years compared to the less than 4 months Starbucks has been observed for. Each company also represents a different decade, with Nike in the 1990s, Parks in the 2010s, and most recently Starbucks in the 2020s. 
+
 
 
 
@@ -165,8 +167,7 @@ knitr::kable(dataALL,
 ```
 
 ## Change in Stock Price
-
-The change in stock price over the length of the boycott is observed in @fig-linegraphNKE, @fig-linegraphPRKS, and @fig-linegraphSBUX. These three graphs show a week before the boycott started to the end of the boycott. @fig-linegraphNKE shows that the first three years were relatively unstable, with stock prices rising later in 1991 before dropping slightly and then peaking early in 1993 before descending to a low a year later. A progressive cimb from that point to February of 1997 sees a growth of around 750%. 
+The change in stock price over the length of the boycott is observed in @fig-linegraphNKE, @fig-linegraphPRKS, and @fig-linegraphSBUX. These three graphs show a week before the boycott started to the end of the boycott. @fig-linegraphNKE shows how Nike’s stock price was relatively unstable in the first three years of the boycott, with stock prices rising later in 1991 before dropping slightly and then peaking early in 1993 before descending to a low a year later. A progressive cimb from that point to February of 1997 sees a growth of around 750%. @fig-linegraphPRKS shows that United Parks and Recreation had a steep drop in stock price when ‘Blackfish’ released and had a year of poor stability after before dropping drastically. Afterwards the stock price continues to remain unstable.  @fig-linegraphSBUX graphs the stock price of Starbucks and depicts a steep climb in price in November of 2023 with a peak in early December before a steady climb down over the next 5 months. 
 
 ```{r}
 #| label: fig-linegraphNKE
@@ -187,8 +188,6 @@ cleaned_data_NKE |>
 
 ```
 
-@fig-linegraphPRKS shows the change in stock price during boycotting of United Parks and Recreation.
-
 ```{r}
 #| label: fig-linegraphPRKS
 #| fig-cap: Changes in United Parks and Recreation Stock Price from One Week Before Blackfish was Released to One Week After Their Pledge to End Orca Breeding
@@ -208,7 +207,6 @@ cleaned_data_PRKS |>
 
 ```
 
-@fig-linegraphSBUX shows
 
 ```{r}
 #| label: fig-linegraphSBUX
@@ -218,7 +216,7 @@ cleaned_data_PRKS |>
 cleaned_data_SBUX |>
   ggplot(mapping = aes(x = Date, y = Close)) +
   geom_line(color="#0000c2") +
-  labs(x = "July 12th, 2013 to May 17th, 2016", y = "Stock Price at Closing",) +
+  labs(x = "October 11th, 2023 to March 28th, 2024 ", y = "Stock Price at Closing",) +
   scale_x_date(
     breaks = "1 month",
     labels = scales::label_date_short(
@@ -228,15 +226,13 @@ cleaned_data_SBUX |>
   theme_minimal()
 ```
 
-\newpage
 
 # Results {#sec-results}
 
-## Overall Change in Stock Price at Commencement and End of Boycott
-
+## Difference in Stock Price Between Commencement and End of Boycott
 @tbl-starttoendNKE, @tbl-starttoendPRKS, and @tbl-starttoendSBUX summarizes the change in stock price between a week before the boycott commenced and its commencement date as well as the difference between the start and end dates of the boycott. The first date is the stock price a week before the stock price and the second date is the day the boycott began.
 
-@tbl-starttoendNKE shows a small decrease in stock price from a week before the beginning of the boycott. There is also an increase in stock price from the day the boycott started to the day it ended. Relative to the stock price, the change is very large as it multiplied by 3.34 times.
+@tbl-starttoendNKE shows Nike had a small decrease in stock price from a week before the beginning of the boycott. There is also an increase in stock price from the day the boycott started to the day it ended. Relative to the stock price, the change is very large as it increased by 335.82%. @tbl-starttoendPRKS shows that there was a significant decrease of 55.3% in United Parks and Recreation's stock price from the beginning to end of the boycott. Starbucks was relatively unchanged from the start to the end of the boycott with a decrease of only 2.5% as shown in @tbl-starttoendSBUX. 
 
 ```{r}
 #| label: tbl-starttoendNKE
@@ -260,8 +256,6 @@ kable(starttoend_NKE,
 )
 ```
 
-@tbl-starttoendPRKS shows that there was a significant decrease in stock price from the beginning to end of the boycott.
-
 ```{r}
 #| label: tbl-starttoendPRKS
 #| tbl-cap: Changes in United Parks & Recreation Stock Price from One Week Before Blackfish was Released, to the Date it was Released, to their Announcement that they will end their Orca Breeding Program
@@ -283,8 +277,6 @@ kable(starttoendPRKS,
       linesep = ""
 )
 ```
-
-@tbl-starttoendSBUX shows minimal change in stock price throughout the boycott.
 
 ```{r}
 #| label: tbl-starttoendSBUX
@@ -308,8 +300,8 @@ kable(starttoendSBUX,
 )
 ```
 
-
-@tbl-twoweeksSBUX shows the 
+## Detailed Observation of Change in Stock Price
+@tbl-twoweeksSBUX shows the daily difference in stock price for two weeks from the announcement of the lawsuit. The stock prices were relatively unaffected immediately following the announcement and November 2nd is responsible for the large spike in price shown in @fig-linegraphSBUX
 
 ```{r}
 #| label: tbl-twoweeksSBUX
@@ -334,11 +326,12 @@ kable(twoweeksSBUX,
 ```
 
 
+## Comparing with the Market
+@fig-DJIandNIKE compares the stock price of Nike and the Dow Jones Index (DJI) [@dowjones]. Dow Jones Index includes Nike among around 30 other companies, and it is clear that they have very similar trajectories throughout the boycott. The only apparent difference is the bump in Nike’s price between 1996 and 1998. Otherwise, both stocks have a steady upward growth.
 
-@fig-spxPRKS compares the stock of United Parks & Recreation with the S&P 500 index (SPX) [@spx]. The S&P 500 is known as the best representation of how the U.S. stock market is doing overall. By comparing the United Parks and Recreation stock price with the S&P, the decrease in the United Parks and Recreation stock price can be understood within the context of 
+@fig-SPXandPRKS compares the stock price of United Parks & Recreation with the S&P 500 Index (SPX). The comparison cannot indicate whether United Parks was doing better than the market based on price, but by comparing the change in price it is clear that overall the market and United Parks were on a fall entering into 2015. However, the steep price drop at United Parks cannot be explained by the market. The gradual decline at the beginning of the boycott also does not resemble the upward trajectory in the market in 2014. 
 
-@fig-djiNKE compares the stock price of Nike and the Dow Jones Index (DJI) [@dji]. The Dow Jones Industrial Average is a stock market index that tracks 30 large companies in the United States, primarily in consumer goods []. Arguably, this index can represent the U.S. economy and serves to show how Nike’s change in stock price may be attributed to growth in the economy. 
-
+@fig-ndxSBUX compares Starbucks’ stock price with the Nasdaq 100 Index (NDX). The absence of Starbucks’ price spike in the Nasdaq stock shows that it cannot be attributed to market changes. The following decrease in the Starbucks stock price is also inconsistent with Nasdaq’s upwards trend. 
 
 
 ```{r}
@@ -413,6 +406,42 @@ plot_dji <- ggplot(NIKE_DJI, aes(x = NIKE_Date, y = DJI_Stocks)) +
 # Arrange plots
 grid.arrange(plot_nike, plot_dji, ncol = 1)
 
+```
+
+```{r}
+#| label: fig-ndxSBUX
+#| fig-cap: Changes in the Starbucks Stock Price in Comparison with the Nasdaq 100 Index from October 11th, 2023 to March 28th, 2024
+#| echo: false
+
+SBUX_NDX <-
+  cleaned_data_NDX |>
+  filter(between(date, as.Date('2023-10-11'), as.Date('2024-03-28')))
+
+SBUX_Focus <-
+  cleaned_data_SBUX |>
+  filter(between(Date, as.Date('2023-10-11'), as.Date('2024-03-18')))
+
+NDX_Stocks <- SBUX_NDX$close
+SBUX_Stocks <- SBUX_Focus$Close
+
+SBUX_Date <- SBUX_Focus$Date
+
+# Plot SBUX
+plot_SBUX <- ggplot(SBUX_Focus, aes(x = SBUX_Date, y = SBUX_Stocks)) +
+  geom_line(color = "#0000c2") +
+  labs(title = "SBUX Stock Price",
+       x = "Date", y = "Stock Price") +
+  theme_minimal()
+
+# Plot NDX
+plot_NDX <- ggplot(SBUX_NDX, aes(x = SBUX_Date, y = NDX_Stocks)) +
+  geom_line(color = "#FF5733") +
+  labs(title = "Nasdaq 100 Index",
+       x = "Date", y = "Index Value") +
+  theme_minimal()
+
+# Arrange plots
+grid.arrange(plot_SBUX, plot_NDX, ncol = 1)
 ```
 
 # Discussion {#sec-discussion}

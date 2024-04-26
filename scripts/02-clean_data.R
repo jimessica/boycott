@@ -48,13 +48,18 @@ cleaned_data_SBUX <-
 cleaned_data_SBUX$Date <- 
   as.Date(cleaned_data_SBUX$Date, format='%Y-%m-%d')
 
-# Starbucks
+# S&P 500
 cleaned_data_SPX <-
   raw_data_SPX |>
   select(symbol, date, close)
 
 cleaned_data_DJI <-
   raw_data_DJI |>
+  select(symbol, date, close)
+
+cleaned_data_NDX <-
+  raw_data_NDX |>
+  drop_na() |>
   select(symbol, date, close)
 
 #### Save data ####
@@ -65,6 +70,13 @@ write_csv(cleaned_data_NKE, "data/analysis_data/cleaned_data_NKE.csv")
 write_csv(cleaned_data_PRKS, "data/analysis_data/cleaned_data_PRKS.csv")
 
 # Starbucks
+write_csv(cleaned_data_SBUX, "data/analysis_data/cleaned_data_SBUX.csv")
+
+# S&P 500
 write_parquet(cleaned_data_SPX, "data/analysis_data/cleaned_data_SPX.parquet")
 
+# DJI
 write_parquet(cleaned_data_DJI, "data/analysis_data/cleaned_data_DJI.parquet")
+
+# Nasdaq 100
+write_parquet(cleaned_data_NDX, "data/analysis_data/cleaned_data_NDX.parquet")
