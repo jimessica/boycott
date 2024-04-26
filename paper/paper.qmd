@@ -1,6 +1,6 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
+title: "Boycotts require significant deterioration in a company's public image to have an impact on their stock prices."
+subtitle: "An analysis of the stocks of 3 large U.S. companies boycotted between 1992 to 2024."
 author: 
   - Jessica Im
 thanks: "Code and data are available at: [https://github.com/jimessica/boycott)](https://github.com/jimessica/boycott)"
@@ -70,17 +70,18 @@ cleaned_data_NDX <-read_parquet("../data/analysis_data/cleaned_data_NDX.parquet"
 ```
 
 # Introduction
-Boycotting is a common way for consumers to cast their vote on the amount of power corporations and institutions should have. Boycotting is usually done by avoiding purchasing from a company or withdrawing support for an institution [@ethicalconsumer]. It is oftentimes a response to an ethical violation and has had most success by impacting the public image of the company through generating negative media coverage [@northwestern]. As businesses have grown and markets have been dominated by oligopolies, consumers feel ignored and alienated [@kokuthreats]. As a result, boycotting has increased and between 1984 to 1990 boycotting increased by 769%. Recently, the Boycott, Divestment, Sanctions (BDS) movement in support of Palestine’s freedom and justice has introduced a new wave of companies being boycotted. Many debates surround the effectiveness of boycotting and whether it can inflict substantial financial losses for  targeted organizations. 
+Boycotting is a common way for consumers to cast their vote on the amount of power corporations and institutions should have. Boycotting is usually done by avoiding purchasing from a company or withdrawing support for an institution [@ethicalconsumer]. It is oftentimes a response to an ethical violation and has had most success by impacting the public image of the company through generating negative media coverage [@northwestern]. As businesses have grown and markets have been dominated by oligopolies, consumers feel ignored and alienated [@kokuthreats]. As a result, boycotting has increased and between 1984 to 1990 boycotting increased by 769%. Recently, the Boycott, Divestment, Sanctions (BDS) movement in support of Palestine’s freedom and justice has introduced a new wave of companies being boycotted. Many debates surround the effectiveness of boycotting and whether it can inflict substantial financial losses for  targeted organizations. Levesque and Nam found that the impacts of boycotts on stock price is highly varied and the overall stock market was not significantly impacted by boycotts (2019). In contrast, Pruitt and Friedman found that target firms suffered from significantly decreased stock prices following boycotts at 21 companies of interest (1986). Many factors may be involved, but researchers have had a hard time pinpointing which ones are the most impactful; Pruitt and Friedman failed to identify any significant relationships between the target’s damage and boycott attributes (1986). According to Brayden King, a boycott is most effective when it generates a lot of negative media coverage [@northwestern]. Levesque and Nam found that companies with a bad reputation before the boycott, larger market capital, and frequent past scandals were more likely to be impacted by boycotts (2019). Overall, the particular factors related to the impact of boycotts and whether boycotts have a significant financial punishment are unclear in existing literature.
 
-The objective of this paper is to determine the impact of boycotting on stock prices and the role earnings calls, product or service type, and social media has. To investigate, Nike, United Parks and Recreation, and Starbucks’s stock prices will be analyzed. 
+The objective of this paper is to add to existing literature by determining the impact of boycotting on stock prices and the factors involved in its effectiveness, particularly media coverage. The estimand is the change in stock price during the boycott period. The beginning of the boycott is determined by an event which sparks the most media coverage or is mentioned the most in the media. The end of the boycott is determined by mention in the media of a “turning point” for the company where the reason for the boycott is addressed. Since Starbucks is an ongoing boycott at the time of this research, the “end date” is the date research began. The stock prices when the market closed were arbitrarily selected instead of the stock price at open. To investigate, Nike, United Parks and Recreation, and Starbucks are analyzed as large U.S. companies that were famously boycotted during the desired time period. The analysis includes a detailed view of the difference in stock prices overall, during periods of heavy media coverage, and in comparison with market trends. From analysis, the stock prices during the boycott of Nike were found to not be impacted, United Parks and Recreation was heavily impacted, and Starbucks were mildly impacted. The range in impact can be attributed to overall company image, product type, earnings calls, unionization, and social media. This result supports the importance of media coverage, but also the lack of financial repercussions to many boycotted companies. 
 
-In the following section, [Background](@sec-background), the history of why each company was or is being boycotted is explained. In [Data](#sec-data), the dataset, variables used, limitations of the data, and methodology for analysis and cleaning are explained. In [Results](#sec-results), there are detailed explorations of the difference in stock price over the boycott, comparisons with the overall market, and an analysis of important dates during the boycotts. Finally, the [Discussion](#sec-discussion) explores the impact of earnings calls, product or service type, and social media.
+
+In [Background](#sec-background), the history of why each company was or is being boycotted is explained. In the following section, [Data](#sec-data), the dataset, variables used, limitations of the data, and methodology for analysis and cleaning are explained. In [Results](#sec-results), there are detailed explorations of the difference in stock price over the boycott, comparisons with the overall market, and an analysis of important dates during the boycotts. Finally, the [Discussion](#sec-discussion) explores the impact of earnings calls, product or service type, and social media. 
 
 # Background {#sec-background}
 
 ## Nike (NKE)
 
-In August of 1992, Jeffrey Ballinger published “The new free-trade heel: Nike's profits jump on the backs of Asian workers” in a Harper’s Bazaar issue [@harpers]. This publication revealed the low pay and poor working conditions in Nike’s Southeast Asian and Middle Eastern sweatshops [@ethically]. Later that year, Nike released the “Code of Conduct and Memorandum of Understanding” for contract workers, but the labour controversy was well underway. In the following years, protests in Southeast Asia and the United States raged on. Protests at the Barcelona Olympics in 1992 and the founding of Ballinger’s labour group Press for Change in 1993 brought new waves of media attention to the cause. After years of Nike promotions fueling more public outrage, in 1998, Nike’s then-CEO Phil Knight announced that Nike will raise minimum wage, increase monitoring, and introduce U.S. clean air standards at all factories [@ethically]. Knight acknowledged the brand’s association with workplace abuse and stated that "the American consumer doesn’t want to buy products made under abusive conditions”. This speech marked the shift away from boycotting and for the purposes of this paper will represent the end of Nike boycotting.
+In August of 1992, Jeffrey Ballinger published “The new free-trade heel: Nike's profits jump on the backs of Asian workers” in a Harper’s Bazaar issue [@harpers]. This publication revealed the low pay and poor working conditions in Nike’s Southeast Asian and Middle Eastern sweatshops [@ethically]. Later that year, Nike released the “Code of Conduct and Memorandum of Understanding” for contract workers, but the labour controversy was well underway. In the following years, protests in Southeast Asia and the United States raged on. Protests at the Barcelona Olympics in 1992 and the founding of Ballinger’s labour group Press for Change in 1993 brought new waves of media attention to the cause. In April 1997 a boycott was called for by the Council on American-Islamic Relations due to a logo which resembled the word "Allah" in Arabic script [@islamiccouncil]. Two months later Nike announced that they would cease to sell these shoes and apologized for the unintentional offense [@nikepulled]. In October of 1997, a non-profit organization called Global Exchange used the internet to organize the first global protest against Nike [@carty]. 84 communities in 12 different countries participated in this anti-sweatshop activism [@carty]. After years of Nike promotions fueling more public outrage, in 1998, Nike’s then-CEO Phil Knight announced that Nike will raise minimum wage, increase monitoring, and introduce U.S. clean air standards at all factories [@ethically]. Knight acknowledged the brand’s association with workplace abuse and stated that "the American consumer doesn’t want to buy products made under abusive conditions”. This speech marked the shift away from boycotting and for the purposes of this paper will represent the end of Nike boycotting.
 
 ## United Parks and Recreation
 
@@ -301,7 +302,54 @@ kable(starttoendSBUX,
 ```
 
 ## Detailed Observation of Change in Stock Price
+In @tbl-twoweeksNKEprotest, the daily difference in Nike's stock price folowing the international Global Exchange protest. The largest change is a week after the protest on the 27th with a drop in 5.79% or 35 cents. 
 @tbl-twoweeksSBUX shows the daily difference in stock price for two weeks from the announcement of the lawsuit. The stock prices were relatively unaffected immediately following the announcement and November 2nd is responsible for the large spike in price shown in @fig-linegraphSBUX
+
+```{r}
+#| label: fig-linegraphNKEfocused
+#| fig-cap: Changes in Nike Stock Price from CAIR Boycott to Two Weeks After the Global Exchange Protest in 1997
+#| echo: false
+
+cleaned_data_NKE |>
+  filter(between(Date, as.Date('1997-03-02'), as.Date('1997-11-01'))) |>
+  ggplot(mapping = aes(x = Date, y = Close)) +
+  geom_line(color="#0000c2") +
+  labs(x = "July 12th, 1991 to May 19th, 1998", y = "Stock Price at Closing",) +
+  scale_x_date(
+    breaks = "1 month",
+    labels = scales::label_date_short(
+      format = c("%y", "%b"),
+      sep = "\n")) +
+  ylim(5,9) + 
+  theme_minimal()
+
+```
+
+```{r}
+#| label: tbl-twoweeksNKE
+#| tbl-cap: Changes in Nike Stock Price Two Weeks After Global Exchange Protest on October 18th, 1997
+#| echo: false
+
+twoweeksNKE <- 
+  cleaned_data_NKE |>
+  filter(between(Date, as.Date('1997-10-18'), as.Date('1997-11-01')))
+  
+
+twoweeksNKE <-
+  twoweeksNKE |> 
+  mutate(Difference = Close - lag(Close),
+  Percentage_Change = (Close - lag(Close)) / lag(Close) * 100)
+
+kable(twoweeksNKE, 
+      col.names = c("Date", 
+                    "Closing Stock Price",
+                    "Difference",
+                    "Percentage Change"),
+      booktabs = TRUE,
+      linesep = ""
+)
+```
+
 
 ```{r}
 #| label: tbl-twoweeksSBUX
@@ -314,12 +362,14 @@ twoweeksSBUX <-
 
 twoweeksSBUX <-
   twoweeksSBUX |> 
-  mutate(Difference = Close - lag(Close)) 
+  mutate(Difference = Close - lag(Close),
+         Percentage_Change = (Close - lag(Close)) / lag(Close) * 100)
 
 kable(twoweeksSBUX, 
       col.names = c("Date", 
                     "Closing Stock Price",
-                    "Difference"),
+                    "Difference",
+                    "Percentage Change"),
       booktabs = TRUE,
       linesep = ""
 )
@@ -327,11 +377,11 @@ kable(twoweeksSBUX,
 
 
 ## Comparing with the Market
-@fig-DJIandNIKE compares the stock price of Nike and the Dow Jones Index (DJI) [@dowjones]. Dow Jones Index includes Nike among around 30 other companies, and it is clear that they have very similar trajectories throughout the boycott. The only apparent difference is the bump in Nike’s price between 1996 and 1998. Otherwise, both stocks have a steady upward growth.
+@fig-djiNKE compares the stock price of Nike and the Dow Jones Index (DJI) [@dowjones]. Dow Jones Index includes Nike among around 30 other companies, and it is clear that they have very similar trajectories throughout the boycott. The only apparent difference is the bump in Nike’s price between 1996 and 1998. Otherwise, both stocks have a steady upward growth.
 
-@fig-SPXandPRKS compares the stock price of United Parks & Recreation with the S&P 500 Index (SPX). The comparison cannot indicate whether United Parks was doing better than the market based on price, but by comparing the change in price it is clear that overall the market and United Parks were on a fall entering into 2015. However, the steep price drop at United Parks cannot be explained by the market. The gradual decline at the beginning of the boycott also does not resemble the upward trajectory in the market in 2014. 
+@fig-spxPRKS compares the stock price of United Parks & Recreation with the S&P 500 Index (SPX). The comparison cannot indicate whether United Parks was doing better than the market based on price, but by comparing the change in price it is clear that overall the market and United Parks were on a fall entering into 2015. However, the steep price drop at United Parks cannot be explained by the market. The gradual decline at the beginning of the boycott also does not resemble the upward trajectory in the market in 2014. 
 
-@fig-ndxSBUX compares Starbucks’ stock price with the Nasdaq 100 Index (NDX). The absence of Starbucks’ price spike in the Nasdaq stock shows that it cannot be attributed to market changes. The following decrease in the Starbucks stock price is also inconsistent with Nasdaq’s upwards trend. 
+@fig-ndxSBUX compares Starbucks’ stock price with the Nasdaq 100 Index (NDX). The absence of Starbucks’ price spike in the Nasdaq stock shows that it cannot be attributed to market changes. The following decrease in the Starbucks stock price after mid-November is also inconsistent with Nasdaq’s upwards trend. 
 
 
 ```{r}
@@ -446,25 +496,14 @@ grid.arrange(plot_SBUX, plot_NDX, ncol = 1)
 
 # Discussion {#sec-discussion}
 
-## 
-
-On November 2nd, Starbucks released their Q4 and Full Year Fiscal Results. Some highlights were record net revenues, store sales up by 8% globally, and record number of stores [@investstarbucks]. In @tbl-twoweeksSBUX, the largest difference in stock price happens on November 2nd at a jump in $8.67. After, 
-
-
-
-## Out of Sight, Out of Mind: Nike isn't the Only One
-
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this.
+## Nike: Seemingly unaffected
+Nike is the only company with an increase in stock price over the boycott period and it is quite significant at 334%. Despite this overall growth, Nike does not remain unaffected by the boycotts. In 1997 the company suffered a significant decrease in comparison to the overall growth in the market as seen in @graph-djiNKE. 
 
 ## SeaWorld: The Tainted Consumer Experience
 
-## Starbucks: Impact of Unionization on Stockprice
+## Starbucks: Importance of Social Media Among Youth
 
-
-
-Investors care about the company's cash flows/earnings margin, when unions are created, the employees get better treatment the earnings margin is affects and is lowered, which investors do not like. Thus, it is likely that stock price went up when Starbucks and Workers United decided to sue each other. They think that Starbucks is gonna win the lawsuit,
-
-On November 2nd, Starbucks released their Q4 and Full Year Fiscal Results. Some highlights were record net revenues, store sales up by 8% globally, and record number of stores [@investstarbucks]
+On November 2nd, Starbucks released their Q4 and Full Year Fiscal Results. Some highlights were record net revenues, store sales up by 8% globally, and record number of stores [@investstarbucks]. In @tbl-twoweeksSBUX, the largest difference in stock price happened on November 2nd at a jump of \$8.67. From observing the comparison with the Nasdaq 100 Index in @fig-ndxSBUX, it is clear that this spike is unrelated to general market trends. This indicates that investors perceived the beginning of the boycott and the lawsuit as harmless to the financial stability and growth of Starbucks. Instead, the positive earnings call had a significant impact on the perceived worth of Starbucks. After the spike, Starbucks began to see possible effects of the boycott. Unlike the upward trending market seen in @fig-ndxSBUX, Starbucks suffered from a gradual decline. At the same time, social media exposure on the Starbucks boycott continued to gain traction. Throughout November 3,000 TikTok videos were posted using the hashtag “#boycottstarbucks” with over 51 million views in total [@nbcstarbucks]. From September to December at the University of Texas, 3 Starbucks-affiliated cafes had decreased sales by around $20,000 each and by February every store on campus with Starbucks licensing had decreased sales [@utstarbucks]. A Starbucks franchise operator in the Middle East and North Africa region announced that they will be laying off 2000 employees as a result of struggling business during the boycott [@MENAlayoffs]. The continuous use of social media to spread awareness on the boycott has undoubtedly impacted the Starbucks business and also brought their stock price down from its peak in November to below its price before the boycott as seen in @tbl-starttoendSBUX. These impacts indicate the role of social media in modern boycotts and its significance in action particularly among youth. The influence of the earnings call indicates that regardless of media attention, if the company’s financial prospects and net income are still high, the stock prices will not be affected.
 
 ## Weaknesses and next steps
 
