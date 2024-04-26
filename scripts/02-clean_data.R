@@ -33,7 +33,7 @@ cleaned_data_NKE$Date <-
 class(cleaned_data_NKE$Date)
 
 
-# United Parks and Resorts
+# SeaWorld
 cleaned_data_PRKS <-
   raw_data_PRKS |>
   select(Date, Close) |>
@@ -69,7 +69,7 @@ cleaned_data_NDX <-
 # Nike
 write_parquet(cleaned_data_NKE, "data/analysis_data/cleaned_data_NKE.parquet")
 
-# United Parks and Resorts
+# SeaWorld
 write_parquet(cleaned_data_PRKS, "data/analysis_data/cleaned_data_PRKS.parquet")
 
 # Starbucks
