@@ -18,8 +18,8 @@ library(arrow)
 
 #### Download data ####
 SPX <- tq_get('SPX',
-               from = "1991-07-12",
-               to = "2023-03-29",
+               from = "2010-01-01",
+               to = "2018-01-01",
                get = "stock.prices")
 
 DJI <- tq_get('DJI',
@@ -37,6 +37,7 @@ raw_data_SPX <- SPX
 raw_data_NDX <- NDX
 
 #### Save data ####
+# Because of the Date Class that needs to be preserved, the raw data is saved as a parquet file
 write_parquet(raw_data_SPX, "data/raw_data/raw_data_SPX.parquet")
 write_parquet(raw_data_DJI, "data/raw_data/raw_data_DJI.parquet")
 write_parquet(raw_data_NDX, "data/raw_data/raw_data_NDX.parquet")
